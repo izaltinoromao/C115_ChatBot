@@ -14,15 +14,23 @@ while clientSocket.recv(1024).decode() == "None":
     number = input("Digite novamente: ")
     clientSocket.send(number.encode())
 
-option = input("CHOSE: ")
+print("----------------------------------------------")
+print("| 1 -> Fatura || 2 -> Saldo || 3 -> Titular  |")
+print("| 4 -> Endereco de cobranca || 5 -> Finalizar|")
+print("----------------------------------------------")
+option = input("Selecione sua opção: ")
 
-while option != '4':
+while option != '5':
     clientSocket.send(option.encode())
-
+    print("______________________________________")
     print(clientSocket.recv(1024).decode())
-
+    print("______________________________________")
+    print("----------------------------------------------")
+    print("| 1 -> Fatura || 2 -> Saldo || 3 -> Titular  |")
+    print("| 4 -> Endereco de cobranca || 5 -> Finalizar|")
+    print("----------------------------------------------")
     option = input(clientSocket.recv(1024).decode())
-    if option == '4':
+    if option == '5':
         print("Finalizando sessão")
 
 clientSocket.close()
